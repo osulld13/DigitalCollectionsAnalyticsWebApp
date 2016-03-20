@@ -1,3 +1,6 @@
+# Code based on the Hello Analytics program which can be found online 
+# at: https://developers.google.com/analytics/devguides/config/mgmt/v3/quickstart/service-py
+
 """A simple example of how to access the Google Analytics API."""
 from flask import Flask
 
@@ -122,7 +125,7 @@ def format_top_content(results):
     for result in results.get('rows'):
       match = template.search(result[0])
       if match:
-          object = {'rank':rank, 'folder_id': match.group(1), 'pid': match.group(2)}
+          object = {'folder_id': match.group(1), 'pid': match.group(2)}
           result_list.append(object)
           rank = rank + 1
 
