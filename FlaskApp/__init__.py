@@ -119,12 +119,14 @@ def format_top_content(results):
   if results:
     # an ordered list of the results
     result_list = []
+    list_of_added_ids = []
     pattern = '/home/#folder_id=(.*)&pidtopage=(.*)&entry_point=([0-1]*)';
     template = re.compile(pattern)
     rank = 1
     for result in results.get('rows'):
       match = template.search(result[0])
-      if match:
+      if match and match.group(2) not in list_of_added_ids:
+	  list_of_added_ids.append(match.group(2))
           object = {'folder_id': match.group(1), 'pid': match.group(2)}
           result_list.append(object)
           rank = rank + 1
